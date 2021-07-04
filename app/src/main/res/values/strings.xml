@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">GoodWeather</string>
+    <string name="login_please">Login, please</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="log_in">Log in</string>
+    <string name="have_not_account">Don\'t have an account? Sign up!</string>
+    <string name="version">Version: 1.1</string>
+    <string name="sign_up">Sign up</string>
+    <string name="sign_up_please">Sign up, please</string>
+    <string name="have_account">Already have an account? Log in!</string>
+</resources>
