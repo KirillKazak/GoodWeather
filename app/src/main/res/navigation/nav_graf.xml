@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graf"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.goodweather.presentation.fragments.LogInFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_weatherTodayFragment"
+            app:destination="@id/weatherTodayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.goodweather.presentation.fragments.SignUpFragment"
+        android:label="SignUpFragment" >
+        <action
+            android:id="@+id/action_signUpFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/weatherTodayFragment"
+        android:name="com.example.goodweather.presentation.fragments.WeatherTodayFragment"
+        android:label="weatherTodayFragment">
+    </fragment>
+    <fragment
+        android:id="@+id/weatherForWeekFragment"
+        android:name="com.example.goodweather.presentation.fragments.WeatherForWeekFragment"
+        android:label="WeatherForWeekFragment">
+    </fragment>
+    <fragment
+        android:id="@+id/weatherInLocationFragment"
+        android:name="com.example.goodweather.presentation.fragments.WeatherInLocationFragment"
+        android:label="WeatherInLocationFragment">
+    </fragment>
+</navigation>

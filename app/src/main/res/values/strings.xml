@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">GoodWeather</string>
-    <string name="login_please">Login, please</string>
+    <string name="login_please">Log in, please</string>
     <string name="enter_your_email">Enter your email</string>
     <string name="enter_your_password">Enter your password</string>
     <string name="log_in">Log in</string>
@@ -9,4 +9,18 @@
     <string name="sign_up">Sign up</string>
     <string name="sign_up_please">Sign up, please</string>
     <string name="have_account">Already have an account? Log in!</string>
+    <string name="no_email">Enter you email</string>
+    <string name="no_password">Enter you password</string>
+    <string name="short_password">Your password is very short! Minimum number of characters: 6.</string>
+    <string name="long_password">Your password is very long! Maximum number of characters: 14.</string>
+    <string name="sign_up_success">Sign up is success</string>
+    <string name="sign_up_error">Sign up error</string>
+    <string name="you_already_authorized">You already authorized</string>
+    <string name="log_in_failed">Sign in is failed</string>
+    <string name="btn_bottom_toolbar_today">Today</string>
+    <string name="btn_bottom_toolbar_in_location">In location</string>
+    <string name="btn_bottom_toolbar_for_week">For week</string>
+    <string name="success">Success</string>
+    <string name="successTag">SUCCESS</string>
+    <string name="fail">fail</string>
 </resources>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "488422364561",
+    "project_id": "goodweatherdatabase",
+    "storage_bucket": "goodweatherdatabase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:488422364561:android:174339ab9c26d288967630",
+        "android_client_info": {
+          "package_name": "com.example.goodweather"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "488422364561-fuq07kup4pl4nf4vfmjqtbetiaeukf59.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjVH7J00mJtisLDPAPHwHuP7mjlhH1Nrs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "488422364561-fuq07kup4pl4nf4vfmjqtbetiaeukf59.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
