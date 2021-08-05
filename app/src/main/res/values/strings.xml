@@ -23,4 +23,5 @@
     <string name="success">Success</string>
     <string name="successTag">SUCCESS</string>
     <string name="fail">fail</string>
+    <string name="not_have_permission_GPS">You have not given permission to use GPS</string>
 </resources>

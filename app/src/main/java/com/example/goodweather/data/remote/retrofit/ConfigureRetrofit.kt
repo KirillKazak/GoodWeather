@@ -1,5 +1,6 @@
 package com.example.goodweather.data.remote.retrofit
 
+import android.app.Application
 import com.example.goodweather.utill.Constants.Companion.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -9,24 +10,21 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ConfigureRetrofit {
 
-    companion object {
-        val retrofit: Retrofit? by lazy {
-            val httpLongInterceptor = HttpLoggingInterceptor()
-            httpLongInterceptor.level = HttpLoggingInterceptor.Level.BODY
+    val weatherAPI : WeatherAPI by lazy {
+        retrofit.create(WeatherAPI::class.java)
+    }
 
-            val okHttpClient = OkHttpClient.Builder()
+    private val retrofit by lazy  {
+        val httpLongInterceptor = HttpLoggingInterceptor()
+        httpLongInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(httpLongInterceptor)
                 .build()
-
-            Retrofit.Builder()
+        Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
-        }
-
-        val weatherAPI : WeatherAPI? = retrofit?.create(WeatherAPI:: class.java)
     }
-
-
 }
