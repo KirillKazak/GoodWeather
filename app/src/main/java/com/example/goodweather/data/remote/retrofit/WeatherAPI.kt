@@ -11,12 +11,24 @@ import retrofit2.http.Query
 interface WeatherAPI {
 
     @GET("data/2.5/weather")
-    fun getWeatherInformation(
+    fun getWeatherInformationByCityName(
         @Query ("q")
         cityName: String = "London",
         @Query ("appid")
         apiKey: String = API_KEY,
         @Query ("units")
         units: String = METRIC
-    ) : Single<WeatherResponse>
+    ) : Response<WeatherResponse>
+
+    @GET("data/2.5/weather")
+    fun getWeatherInformationByCoordinates(
+        @Query ("lat")
+        lat: Double = 0.0,
+        @Query ("long")
+        long: Double = 0.0,
+        @Query ("appid")
+        apiKey: String = API_KEY,
+        @Query ("units")
+        units: String = METRIC
+    ) : Response<WeatherResponse>
 }

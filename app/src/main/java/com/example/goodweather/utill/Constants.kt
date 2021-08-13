@@ -7,5 +7,6 @@ class Constants  {
         const val METRIC = "metric"
         const val LENGTH_SIX = 6
         const val LENGTH_EIGHTEEN = 18
+        const val PERMISSION_ID = 1
     }
 }
