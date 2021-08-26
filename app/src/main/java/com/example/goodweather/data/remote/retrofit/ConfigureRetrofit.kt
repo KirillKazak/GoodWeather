@@ -23,6 +23,7 @@ class ConfigureRetrofit {
         Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(okHttpClient)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
     }

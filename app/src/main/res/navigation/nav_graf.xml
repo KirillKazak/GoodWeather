@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graf"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/splashScreenFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -30,13 +30,17 @@
         android:label="weatherTodayFragment">
     </fragment>
     <fragment
-        android:id="@+id/weatherForWeekFragment"
-        android:name="com.example.goodweather.presentation.fragments.WeatherForWeekFragment"
-        android:label="WeatherForWeekFragment">
-    </fragment>
-    <fragment
         android:id="@+id/weatherInLocationFragment"
         android:name="com.example.goodweather.presentation.fragments.WeatherInLocationFragment"
         android:label="WeatherInLocationFragment">
+    </fragment>
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.example.goodweather.presentation.fragments.SplashScreenFragment"
+        android:label="SplashScreenFragment"
+        app:startDestination="@id/action_splashScreenFragment_to_loginFragment">
+        <action
+            android:id="@+id/action_splashScreenFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 </navigation>

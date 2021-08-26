@@ -17,12 +17,25 @@ class WeatherTodayViewModel(context: Application) : AndroidViewModel(context)  {
     private val locationLifeDate = LocationLiveData(context)
     val weatherInformationLiveData : MutableLiveData<WeatherResponse> = MutableLiveData()
     private val weatherRepository = WeatherRepository()
+    private val compositeDisposable = CompositeDisposable()
 
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.dispose()
+
+    }
 
     fun getLocationLifeData() = locationLifeDate
 
-     fun fetchWeatherList(lat : Double, long : Double) = viewModelScope.launch {
-         weatherRepository.getWeatherByLocationDetails(lat, long)
+     fun fetchWeatherList(lat : Double, long : Double) {
+         compositeDisposable.add(weatherRepository.getWeatherByLocationDetails(lat, long)
+             .subscribeOn(Schedulers.io())
+             .observeOn(AndroidSchedulers.mainThread())
+             .subscribe({
+
+             }, {
+
+             }))
 //        val response = weatherRepository.getWeatherByLocationDetails(lat, long)
 //        val body = response.body()
 //        weatherInformationLiveData.postValue(body)

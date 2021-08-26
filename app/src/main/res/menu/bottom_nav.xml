@@ -9,8 +9,4 @@
     <item android:id="@+id/weatherInLocationFragment"
         android:title="@string/btn_bottom_toolbar_in_location"
         android:icon="@drawable/ic_weather_in_location"/>
-    <item android:id="@+id/weatherForWeekFragment"
-        android:title="@string/btn_bottom_toolbar_for_week"
-        android:icon="@drawable/ic_weather_for_week"/>
-
 </menu>

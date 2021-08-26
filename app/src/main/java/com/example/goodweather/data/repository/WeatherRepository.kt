@@ -10,7 +10,7 @@ class WeatherRepository : Repository {
         return ConfigureRetrofit().weatherAPI.getWeatherInformationByCityName(cityName = cityName)
     }
 
-    override suspend fun getWeatherByLocationDetails(lat: Double, long: Double): Response<WeatherResponse> {
+    override fun getWeatherByLocationDetails(lat: Double, long: Double): Single<WeatherResponse> {
         return ConfigureRetrofit().weatherAPI.getWeatherInformationByCoordinates(lat=lat, long =long)
     }
 }

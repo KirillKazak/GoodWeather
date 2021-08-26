@@ -22,7 +22,8 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setupWithNavController(navController)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if(destination.id == R.id.signUpFragment || destination.id ==R.id.loginFragment) {
+            if(destination.id == R.id.signUpFragment || destination.id ==R.id.loginFragment ||
+                    destination.id == R.id.splashScreenFragment) {
                 bottomNavigationView.visibility = View.GONE
             }
             else {

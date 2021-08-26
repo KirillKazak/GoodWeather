@@ -7,5 +7,5 @@ import retrofit2.Response
 interface Repository {
     suspend fun getWeatherByCity (cityName: String) : Response<WeatherResponse>?
 
-    suspend fun  getWeatherByLocationDetails (lat : Double, long : Double) : Response<WeatherResponse>
+    fun  getWeatherByLocationDetails (lat : Double, long : Double) : Single<WeatherResponse>
 }
