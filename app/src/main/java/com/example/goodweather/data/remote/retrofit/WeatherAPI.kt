@@ -17,7 +17,7 @@ interface WeatherAPI {
         cityName: String = "London",
         @Query ("units")
         units: String = METRIC
-    ) : Response<WeatherResponse>
+    ) : Single<WeatherResponse>
 
     @GET("data/2.5/weather")
     fun getWeatherInformationByCoordinates(

@@ -6,7 +6,7 @@ import io.reactivex.Single
 import retrofit2.Response
 
 class WeatherRepository : Repository {
-    override suspend fun getWeatherByCity(cityName: String): Response<WeatherResponse> {
+    override fun getWeatherByCity(cityName: String): Single<WeatherResponse> {
         return ConfigureRetrofit().weatherAPI.getWeatherInformationByCityName(cityName = cityName)
     }
 

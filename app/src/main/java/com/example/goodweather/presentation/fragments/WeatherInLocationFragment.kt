@@ -4,16 +4,41 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import com.example.goodweather.R
+import com.example.goodweather.databinding.FragmentWeatherInLocationBinding
+import com.example.goodweather.databinding.FragmentWeatherTodayBinding
+import com.example.goodweather.domain.entity.Main
+import com.example.goodweather.presentation.viewmodel.WeatherInLocationViewModel
+import com.example.goodweather.presentation.viewmodel.WeatherTodayViewModel
 
 class WeatherInLocationFragment : Fragment() {
+
+    private lateinit var fragmentWeatherInLocationBinding: FragmentWeatherInLocationBinding
+    private lateinit var viewModel: WeatherInLocationViewModel
+    private var main = Main(1,1, 1, 1, 1)
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_weather_in_location, container, false)
+    ): View {
+        fragmentWeatherInLocationBinding = DataBindingUtil
+            .inflate(inflater, R.layout.fragment_weather_in_location, container, false)
+        return fragmentWeatherInLocationBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        fragmentWeatherInLocationBinding.weatherInLocationFragment = this
+
+        viewModel = ViewModelProviders.of(this).get(WeatherInLocationViewModel::class.java)
+    }
+
+    fun getWeather() {
+        viewModel.fetchWeatherList(fragmentWeatherInLocationBinding.edtCity.text.toString())
+        fragmentWeatherInLocationBinding.tvTemperature.text = main.temp.toString()
     }
 }

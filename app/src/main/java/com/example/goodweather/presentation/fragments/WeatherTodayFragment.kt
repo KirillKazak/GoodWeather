@@ -13,11 +13,17 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import com.example.goodweather.R
 import com.example.goodweather.data.repository.WeatherRepository
+import com.example.goodweather.databinding.FragmentWeatherTodayBinding
+import com.example.goodweather.domain.entity.Main
+import com.example.goodweather.domain.entity.WeatherResponse
 import com.example.goodweather.presentation.viewmodel.WeatherTodayViewModel
 import com.example.goodweather.presentation.viewmodel.factorys.ProvideFactoryWeatherToday
 import com.example.goodweather.utill.Constants.Companion.PERMISSION_ID
@@ -26,34 +32,25 @@ import java.util.jar.Manifest
 
 class WeatherTodayFragment : Fragment() {
 
-    lateinit var viewModel : WeatherTodayViewModel
-    lateinit var tvTemperature : TextView
-    lateinit var ivWeather : AppCompatImageView
+    private lateinit var fragmentWeatherTodayBinding: FragmentWeatherTodayBinding
+    private lateinit var viewModel : WeatherTodayViewModel
+    private var main = Main(1,1,1,1,1)
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_weather_today, container, false)
+    ): View {
+        fragmentWeatherTodayBinding = DataBindingUtil
+            .inflate(inflater, R.layout.fragment_weather_today, container, false)
+        return fragmentWeatherTodayBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        tvTemperature = view.findViewById(R.id.tvTemperature)
+        fragmentWeatherTodayBinding.weatherTodayFragment = this
 
         prepRequestLocationUpdates()
-
-//        viewModel.getWeatherByCity("London")
-//
-//        tvTemperature = view.findViewById(R.id.tvTemperature)
-//        ivWeather = view.findViewById(R.id.ivWeather)
-//
-//        viewModel.weatherInformationLifeData.observe(viewLifecycleOwner, {
-//            tvTemperature.text = it.main.temp.toString()
-//            ivWeather.loadFromUrl(it.weather.icon)
-//        })
     }
 
     private fun prepRequestLocationUpdates() {
@@ -88,14 +85,9 @@ class WeatherTodayFragment : Fragment() {
 
     private fun requestLocationUpdates() {
         viewModel = ViewModelProviders.of(this).get(WeatherTodayViewModel::class.java)
-
         viewModel.getLocationLifeData().observe(viewLifecycleOwner, {
-            viewModel.fetchWeatherList(it.lat.toDouble(), it.long.toDouble())
+            viewModel.fetchWeatherList(it.lat.toDouble(), it.long.toDouble()).toString()
+            fragmentWeatherTodayBinding.tvTemperature.text = main.temp.toString()
         })
-
-//        viewModel.weatherInformationLiveData.observe(viewLifecycleOwner, {
-//            Toast.makeText(context, it.main.temp.toString(), Toast.LENGTH_LONG).show()
-//            Log.e("TEMP", "temp")
-//        })
     }
 }

@@ -15,7 +15,7 @@ import com.example.goodweather.data.remote.firebase.GoodWeatherFirebase
 import com.example.goodweather.databinding.FragmentSignUpBinding
 import com.example.goodweather.presentation.viewmodel.SignUpViewModel
 import com.example.goodweather.presentation.viewmodel.factorys.ProvideFactorySignUp
-import kotlinx.android.synthetic.main.fragment_sign_up.*
+
 
 class SignUpFragment : Fragment() { //TODO rename fragment +
 
@@ -46,8 +46,8 @@ class SignUpFragment : Fragment() { //TODO rename fragment +
     }
 
     fun signUp () {
-        viewModel.setErrorMessageInErrorState(edtEmail.text.toString(),
-            edtPassword.text.toString())
+        viewModel.setErrorMessageInErrorState(fragmentSignUpBinding.edtEmail.text.toString(),
+            fragmentSignUpBinding.edtPassword.text.toString())
     }
 
     fun moveLoginFragment() {

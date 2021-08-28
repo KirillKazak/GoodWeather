@@ -1,50 +1,31 @@
 package com.example.goodweather.presentation.viewmodel
 
 import android.app.Application
-import android.content.Context
-import android.util.Log
 import androidx.lifecycle.*
-import com.example.goodweather.data.remote.retrofit.WeatherAPI
 import com.example.goodweather.data.repository.WeatherRepository
 import com.example.goodweather.domain.entity.WeatherResponse
 import com.example.goodweather.presentation.lifedata.LocationLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.coroutines.launch
 
-class WeatherTodayViewModel(context: Application) : AndroidViewModel(context)  {
-    private val locationLifeDate = LocationLiveData(context)
-    val weatherInformationLiveData : MutableLiveData<WeatherResponse> = MutableLiveData()
+class WeatherTodayViewModel(application: Application) : AndroidViewModel(application)  {
+    private val locationLifeDate = LocationLiveData(application)
     private val weatherRepository = WeatherRepository()
     private val compositeDisposable = CompositeDisposable()
 
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()
-
     }
 
     fun getLocationLifeData() = locationLifeDate
 
-     fun fetchWeatherList(lat : Double, long : Double) {
-         compositeDisposable.add(weatherRepository.getWeatherByLocationDetails(lat, long)
-             .subscribeOn(Schedulers.io())
-             .observeOn(AndroidSchedulers.mainThread())
-             .subscribe({
-
-             }, {
-
-             }))
-//        val response = weatherRepository.getWeatherByLocationDetails(lat, long)
-//        val body = response.body()
-//        weatherInformationLiveData.postValue(body)
+    fun fetchWeatherList(lat : Double, long : Double) {
+        compositeDisposable.add(weatherRepository.getWeatherByLocationDetails(lat, long)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({}, {
+            }))
     }
-
-//    fun getWeatherByCity (cityName : String) = viewModelScope.launch {
-//        val response = weatherRepository.getWeatherByCity(cityName)
-//        val body = response?.body()
-//        weatherInformationLifeData.postValue(body)
-//        Log.d("TAG", weatherInformationLifeData.value?.name.toString())
-//    }
 }

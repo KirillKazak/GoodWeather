@@ -2,15 +2,14 @@ package com.example.goodweather.presentation.lifedata
 
 import android.annotation.SuppressLint
 import android.app.Application
-import android.content.Context
 import android.location.Location
 import androidx.lifecycle.LiveData
 import com.example.goodweather.location.LocationDetails
 import com.google.android.gms.location.*
 
-class LocationLiveData(context: Application) : LiveData<LocationDetails>() {
+class LocationLiveData(application: Application) : LiveData<LocationDetails>() {
 
-    private var fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
+    private var fusedLocationClient = LocationServices.getFusedLocationProviderClient(application)
 
     override fun onInactive() {
         super.onInactive()

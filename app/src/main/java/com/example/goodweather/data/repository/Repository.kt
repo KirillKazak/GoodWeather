@@ -5,7 +5,7 @@ import io.reactivex.Single
 import retrofit2.Response
 
 interface Repository {
-    suspend fun getWeatherByCity (cityName: String) : Response<WeatherResponse>?
+    fun getWeatherByCity (cityName: String) : Single<WeatherResponse>?
 
     fun  getWeatherByLocationDetails (lat : Double, long : Double) : Single<WeatherResponse>
 }
