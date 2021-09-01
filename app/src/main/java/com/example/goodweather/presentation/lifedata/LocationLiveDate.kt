@@ -1,11 +1,18 @@
 package com.example.goodweather.presentation.lifedata
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Application
+import android.content.pm.PackageManager
 import android.location.Location
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import com.example.goodweather.location.LocationDetails
-import com.google.android.gms.location.*
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.LocationServices
 
 class LocationLiveData(application: Application) : LiveData<LocationDetails>() {
 
@@ -20,9 +27,9 @@ class LocationLiveData(application: Application) : LiveData<LocationDetails>() {
     override fun onActive() {
         super.onActive()
         fusedLocationClient.lastLocation.addOnSuccessListener {
-            location : Location -> location.also {
-                setLocationData(it)
-            }
+                location : Location -> location.also {
+                    setLocationData(it)
+                }
         }
         startLocationUpdates()
     }
@@ -49,7 +56,7 @@ class LocationLiveData(application: Application) : LiveData<LocationDetails>() {
 
     companion object {
         val locationRequest : LocationRequest = LocationRequest.create().apply {
-            interval = 6000
+            interval = 60000
             fastestInterval = interval/4
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         }
