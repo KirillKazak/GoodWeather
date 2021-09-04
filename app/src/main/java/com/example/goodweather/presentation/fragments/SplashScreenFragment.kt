@@ -53,13 +53,12 @@ class SplashScreenFragment() : Fragment(), CoroutineScope {
 
     private fun prepRequestLocationUpdates() {
         if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
-            == PackageManager.PERMISSION_GRANTED &&
+            != PackageManager.PERMISSION_GRANTED &&
             ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION)
-            == PackageManager.PERMISSION_GRANTED) {
-        } else {
-            val permissionRequest = arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION,android.Manifest.permission.ACCESS_FINE_LOCATION)
-            requestPermissions(permissionRequest, Constants.PERMISSION_ID)
-        }
+            != PackageManager.PERMISSION_GRANTED) {
+                val permissionRequest = arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION,android.Manifest.permission.ACCESS_FINE_LOCATION)
+                requestPermissions(permissionRequest, Constants.PERMISSION_ID)
+            }
     }
 
     override fun onRequestPermissionsResult(
@@ -70,8 +69,7 @@ class SplashScreenFragment() : Fragment(), CoroutineScope {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             Constants.PERMISSION_ID -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                } else {
+                if (grantResults.isNotEmpty() && grantResults[0] != PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(context, "Unable to update location without permission", Toast.LENGTH_LONG).show()
                 }
             }

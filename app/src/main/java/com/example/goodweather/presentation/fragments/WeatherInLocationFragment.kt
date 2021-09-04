@@ -9,16 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.goodweather.R
 import com.example.goodweather.databinding.FragmentWeatherInLocationBinding
-import com.example.goodweather.databinding.FragmentWeatherTodayBinding
-import com.example.goodweather.domain.entity.Main
 import com.example.goodweather.presentation.viewmodel.WeatherInLocationViewModel
-import com.example.goodweather.presentation.viewmodel.WeatherTodayViewModel
 
 class WeatherInLocationFragment : Fragment() {
 
     private lateinit var fragmentWeatherInLocationBinding: FragmentWeatherInLocationBinding
     private lateinit var viewModel: WeatherInLocationViewModel
-    private var main = Main(1,1, 1, 1, 1)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +35,7 @@ class WeatherInLocationFragment : Fragment() {
 
     fun getWeather() {
         viewModel.fetchWeatherList(fragmentWeatherInLocationBinding.edtCity.text.toString())
-        fragmentWeatherInLocationBinding.tvTemperature.text = main.temp.toString()
+        fragmentWeatherInLocationBinding.tvTemperature.text = viewModel.temperature.value?.temp.toString()
+
     }
 }

@@ -15,6 +15,8 @@ interface WeatherAPI {
     fun getWeatherInformationByCityName(
         @Query ("q")
         cityName: String = "London",
+        @Query ("appid")
+        apiKey: String = API_KEY,
         @Query ("units")
         units: String = METRIC
     ) : Single<WeatherResponse>
@@ -25,6 +27,8 @@ interface WeatherAPI {
         lat: Double = 0.0,
         @Query ("long")
         long: Double = 0.0,
+        @Query ("appid")
+        apiKey: String = API_KEY,
         @Query ("units")
         units: String = METRIC
     ) : Single<WeatherResponse>
