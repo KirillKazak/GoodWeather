@@ -6,13 +6,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.goodweather.data.repository.WeatherRepository
 import com.example.goodweather.domain.entity.Main
+import com.example.goodweather.domain.entity.WeatherResponse
+import com.example.goodweather.newentity.NewWeatherResponse
 import com.example.goodweather.presentation.lifedata.LocationLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 
 class WeatherInLocationViewModel : ViewModel() {
-    val temperature : MutableLiveData<Main> = MutableLiveData()
+    val temperature: MutableLiveData<NewWeatherResponse> = MutableLiveData()
     private val weatherRepository = WeatherRepository()
     private val compositeDisposable = CompositeDisposable()
 
@@ -21,13 +24,20 @@ class WeatherInLocationViewModel : ViewModel() {
         compositeDisposable.dispose()
     }
 
-    fun fetchWeatherList(cityName : String) {
-        compositeDisposable.add(weatherRepository.getWeatherByCity(cityName)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-            }, {
-            })
+    fun fetchWeatherList(cityName: String) {
+        compositeDisposable.add(
+            weatherRepository.getWeatherByCity(cityName)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object: DisposableSingleObserver<NewWeatherResponse>(){
+                    override fun onSuccess(t: NewWeatherResponse) {
+                        temperature.postValue(t)
+                    }
+
+                    override fun onError(e: Throwable) {
+                    }
+
+                })
         )
     }
 }

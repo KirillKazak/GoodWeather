@@ -1,9 +1,10 @@
 package com.example.goodweather.domain.entity
 
 data class Main(
-    val temp : Int,
+    val temp : Double,
+    val feels_like : Double,
+    val temp_min : Double,
+    val temp_max : Double,
     val pressure : Int,
-    val humidity : Int,
-    val temp_min : Int,
-    val temp_max : Int,
+    val humidity : Int
 )

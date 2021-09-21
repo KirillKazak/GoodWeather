@@ -13,7 +13,7 @@ import com.example.goodweather.presentation.viewmodel.WeatherInLocationViewModel
 
 class WeatherInLocationFragment : Fragment() {
 
-    private lateinit var fragmentWeatherInLocationBinding: FragmentWeatherInLocationBinding
+    private lateinit var fragmentWeatherInLocation: FragmentWeatherInLocationBinding
     private lateinit var viewModel: WeatherInLocationViewModel
 
     override fun onCreateView(
@@ -21,21 +21,25 @@ class WeatherInLocationFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        fragmentWeatherInLocationBinding = DataBindingUtil
+        fragmentWeatherInLocation = DataBindingUtil
             .inflate(inflater, R.layout.fragment_weather_in_location, container, false)
-        return fragmentWeatherInLocationBinding.root
+        return fragmentWeatherInLocation.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fragmentWeatherInLocationBinding.weatherInLocationFragment = this
+        fragmentWeatherInLocation.weatherInLocationFragment = this
 
         viewModel = ViewModelProviders.of(this).get(WeatherInLocationViewModel::class.java)
+
+        viewModel.fetchWeatherList("Minsk")
     }
 
     fun getWeather() {
-        viewModel.fetchWeatherList(fragmentWeatherInLocationBinding.edtCity.text.toString())
-        fragmentWeatherInLocationBinding.tvTemperature.text = viewModel.temperature.value?.temp.toString()
-
+        viewModel.temperature.observe(viewLifecycleOwner, { data ->
+            data?.let {
+                fragmentWeatherInLocation.tvTemperature.text = it.main.temp.toString()
+            }
+        })
     }
 }

@@ -21,7 +21,7 @@ class ConfigureRetrofit {
                 .addInterceptor(httpLongInterceptor)
                 .build()
         Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl("http://api.openweathermap.org")
                 .client(okHttpClient)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
