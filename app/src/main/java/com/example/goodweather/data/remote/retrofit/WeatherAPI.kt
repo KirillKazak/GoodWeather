@@ -1,14 +1,10 @@
 package com.example.goodweather.data.remote.retrofit
 
-import com.example.goodweather.domain.entity.WeatherResponse
-import com.example.goodweather.newentity.NewWeatherResponse
+import com.example.goodweather.domain.entity.NewWeatherResponse
 import com.example.goodweather.utill.Constants.Companion.API_KEY
 import com.example.goodweather.utill.Constants.Companion.METRIC
-import io.reactivex.Observable
 import io.reactivex.Single
-import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface WeatherAPI {

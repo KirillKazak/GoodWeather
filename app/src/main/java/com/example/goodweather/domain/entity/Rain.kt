@@ -1,4 +1,4 @@
-package com.example.goodweather.newentity
+package com.example.goodweather.domain.entity
 
 
 import com.google.gson.annotations.SerializedName

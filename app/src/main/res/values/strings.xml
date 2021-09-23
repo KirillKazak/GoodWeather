@@ -26,4 +26,13 @@
     <string name="not_have_permission_GPS">You have not given permission to use GPS</string>
     <string name="turn_location">Please Turn on Your device Location</string>
     <string name="send_city_name">send city name</string>
+    <string name="kazzak_technology_corporation">KaZZaK Technology corporation (c)</string>
+    <string name="degree">℃</string>
+    <string name="feels_like">Feels like</string>
+    <string name="temperature_min">Temperature min</string>
+    <string name="temperature">Temperature</string>
+    <string name="temperature_max">Temperature max</string>
+    <string name="pressure">Pressure</string>
+    <string name="humidity">Humidity</string>
+    <string name="wind_speed">Wind speed</string>
 </resources>

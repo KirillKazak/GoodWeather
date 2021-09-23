@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import com.bumptech.glide.Glide
 import com.example.goodweather.R
 import com.example.goodweather.databinding.FragmentWeatherInLocationBinding
 import com.example.goodweather.presentation.viewmodel.WeatherInLocationViewModel
@@ -32,13 +33,29 @@ class WeatherInLocationFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(this).get(WeatherInLocationViewModel::class.java)
 
-        viewModel.fetchWeatherList("Minsk")
+        viewModel.fetchWeatherList(fragmentWeatherInLocation.edtCity.text.toString())
     }
 
     fun getWeather() {
         viewModel.temperature.observe(viewLifecycleOwner, { data ->
             data?.let {
-                fragmentWeatherInLocation.tvTemperature.text = it.main.temp.toString()
+                fragmentWeatherInLocation.tvLocation.text = "${data.name}, ${data.sys.country}"
+
+                fragmentWeatherInLocation.tvTemperature.text =
+                    data.main.temp.toInt().toString() + "\u2103"
+
+                Glide.with(this)
+                    .load("http://openweathermap.org/img/wn/"
+                            + data.weather.get(0).icon + "@2x.png")
+                    .into(fragmentWeatherInLocation.ivWeather)
+
+                fragmentWeatherInLocation.tvDescription.text = data.weather.get(0).description
+                fragmentWeatherInLocation.tvFeelsLike.text = data.main.feelsLike.toInt().toString()
+                fragmentWeatherInLocation.tvTempMin.text = data.main.tempMin.toInt().toString()
+                fragmentWeatherInLocation.tvTempMax.text = data.main.tempMax.toInt().toString()
+                fragmentWeatherInLocation.tvPressure.text = data.main.pressure.toString()
+                fragmentWeatherInLocation.tvHumidity.text = data.main.humidity.toString()
+                fragmentWeatherInLocation.tvWindSpeed.text = data.wind.speed.toString()
             }
         })
     }

@@ -1,6 +1,8 @@
 package com.example.goodweather.domain.entity
 
+
 data class Wind(
-    val speed : Double,
-    val deg : Double
+    val deg: Int,
+    val gust: Double,
+    val speed: Double
 )

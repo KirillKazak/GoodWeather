@@ -47,10 +47,23 @@ class WeatherTodayFragment() : Fragment() {
     private fun getTemperatureDetails() {
         viewModel.temperature.observe(viewLifecycleOwner, { data ->
             data?.let {
-                fragmentWeatherTodayBinding.tvTemperature.text = data.main.temp.toString()
+                fragmentWeatherTodayBinding.tvLocation.text = "${data.name}, ${data.sys.country}"
+
+                fragmentWeatherTodayBinding.tvTemperature.text =
+                    data.main.temp.toInt().toString() + "\u2103"
+
                 Glide.with(this)
-                    .load("http://openweathermap.org/img/wn/" + data.weather.get(0).icon + "@2x.png")
+                    .load("http://openweathermap.org/img/wn/"
+                                + data.weather.get(0).icon + "@2x.png")
                     .into(fragmentWeatherTodayBinding.ivWeather)
+
+                fragmentWeatherTodayBinding.tvDescription.text = data.weather.get(0).description
+                fragmentWeatherTodayBinding.tvFeelsLike.text = data.main.feelsLike.toInt().toString()
+                fragmentWeatherTodayBinding.tvTempMin.text = data.main.tempMin.toInt().toString()
+                fragmentWeatherTodayBinding.tvTempMax.text = data.main.tempMax.toInt().toString()
+                fragmentWeatherTodayBinding.tvPressure.text = data.main.pressure.toString()
+                fragmentWeatherTodayBinding.tvHumidity.text = data.main.humidity.toString()
+                fragmentWeatherTodayBinding.tvWindSpeed.text = data.wind.speed.toString()
             }
 
         })

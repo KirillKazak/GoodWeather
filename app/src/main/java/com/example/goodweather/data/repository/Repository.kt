@@ -1,10 +1,7 @@
 package com.example.goodweather.data.repository
 
-import com.example.goodweather.domain.entity.WeatherResponse
-import com.example.goodweather.newentity.NewWeatherResponse
-import io.reactivex.Observable
+import com.example.goodweather.domain.entity.NewWeatherResponse
 import io.reactivex.Single
-import retrofit2.Response
 
 
 interface Repository {

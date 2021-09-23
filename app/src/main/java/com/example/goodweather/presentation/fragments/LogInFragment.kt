@@ -45,21 +45,25 @@ class LogInFragment : Fragment() {
     }
 
     fun logIn() {
-        viewModel.userSignIn(fragmentLogInBinding.edtEmail.text.toString(),
-            fragmentLogInBinding.edtPassword.text.toString())
+        viewModel.userSignIn(
+            fragmentLogInBinding.edtEmail.text.toString(),
+            fragmentLogInBinding.edtPassword.text.toString()
+        )
 
         viewModel.errorStateLogIn.observe(viewLifecycleOwner, {
-           if (it == context?.getString(R.string.success)) {
-               moveToWeatherTodayFragment()
-           }
+            if (it == context?.getString(R.string.success)) {
+                moveToWeatherTodayFragment()
+            }
         })
     }
 
     fun moveToSignUpFragment() {
-        requireView().findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
+        requireView().findNavController()
+            .navigate(R.id.action_loginFragment_to_signUpFragment)
     }
 
     private fun moveToWeatherTodayFragment() {
-        requireView().findNavController().navigate(R.id.action_loginFragment_to_weatherTodayFragment)
+        requireView().findNavController()
+            .navigate(R.id.action_loginFragment_to_weatherTodayFragment)
     }
 }

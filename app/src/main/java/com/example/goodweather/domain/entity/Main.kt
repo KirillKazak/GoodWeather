@@ -1,10 +1,20 @@
 package com.example.goodweather.domain.entity
 
+
+import com.google.gson.annotations.SerializedName
+
 data class Main(
-    val temp : Double,
-    val feels_like : Double,
-    val temp_min : Double,
-    val temp_max : Double,
-    val pressure : Int,
-    val humidity : Int
+    @SerializedName("feels_like")
+    val feelsLike: Double,
+    @SerializedName("grnd_level")
+    val grndLevel: Int,
+    val humidity: Int,
+    val pressure: Int,
+    @SerializedName("sea_level")
+    val seaLevel: Int,
+    val temp: Double,
+    @SerializedName("temp_max")
+    val tempMax: Double,
+    @SerializedName("temp_min")
+    val tempMin: Double
 )

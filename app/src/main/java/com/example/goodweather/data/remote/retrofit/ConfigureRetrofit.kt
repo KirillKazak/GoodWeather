@@ -10,21 +10,21 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ConfigureRetrofit {
 
-    val weatherAPI : WeatherAPI by lazy {
+    val weatherAPI: WeatherAPI by lazy {
         retrofit.create(WeatherAPI::class.java)
     }
 
-    private val retrofit by lazy  {
+    private val retrofit by lazy {
         val httpLongInterceptor = HttpLoggingInterceptor()
         httpLongInterceptor.level = HttpLoggingInterceptor.Level.BODY
         val okHttpClient = OkHttpClient.Builder()
-                .addInterceptor(httpLongInterceptor)
-                .build()
+            .addInterceptor(httpLongInterceptor)
+            .build()
         Retrofit.Builder()
-                .baseUrl("http://api.openweathermap.org")
-                .client(okHttpClient)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
+            .baseUrl("http://api.openweathermap.org")
+            .client(okHttpClient)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
     }
 }
