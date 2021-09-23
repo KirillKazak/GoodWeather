@@ -1,7 +1,7 @@
 package com.example.goodweather.domain.entity
 
 
-data class NewWeatherResponse(
+data class WeatherResponse(
     val base: String,
     val clouds: Clouds,
     val cod: Int,

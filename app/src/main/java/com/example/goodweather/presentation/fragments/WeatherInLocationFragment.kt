@@ -22,7 +22,7 @@ class WeatherInLocationFragment : Fragment() {
     private lateinit var cityName: String
     private var sharedPreferences: SharedPreferences? = null
     private var KEY: String = "CITY_NAME"
-    private var KEY_WORD : String? = "London"
+    private var KEY_WORD: String? = "London"
 
     override fun onCreateView(
         inflater: LayoutInflater,

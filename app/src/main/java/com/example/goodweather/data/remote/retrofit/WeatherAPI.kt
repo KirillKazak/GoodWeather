@@ -1,6 +1,6 @@
 package com.example.goodweather.data.remote.retrofit
 
-import com.example.goodweather.domain.entity.NewWeatherResponse
+import com.example.goodweather.domain.entity.WeatherResponse
 import com.example.goodweather.utill.Constants.Companion.API_KEY
 import com.example.goodweather.utill.Constants.Companion.METRIC
 import io.reactivex.Single
@@ -17,7 +17,7 @@ interface WeatherAPI {
         apiKey: String = API_KEY,
         @Query("units")
         units: String = METRIC
-    ): Single<NewWeatherResponse>
+    ): Single<WeatherResponse>
 
     @GET("/data/2.5/weather")
     fun getWeatherInformationByCoordinates(
@@ -29,5 +29,5 @@ interface WeatherAPI {
         apiKey: String = API_KEY,
         @Query("units")
         units: String = METRIC
-    ): Single<NewWeatherResponse>
+    ): Single<WeatherResponse>
 }
