@@ -35,4 +35,7 @@
     <string name="pressure">Pressure</string>
     <string name="humidity">Humidity</string>
     <string name="wind_speed">Wind speed</string>
+    <string name="mbar">mbar</string>
+    <string name="per">%</string>
+    <string name="km_in_hour">km/h</string>
 </resources>

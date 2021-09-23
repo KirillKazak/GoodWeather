@@ -120,6 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/have_account"
+            android:textSize="@dimen/dimens_16sp"
             android:textColor="@color/black"
             android:clickable="true"
             android:focusable="true"

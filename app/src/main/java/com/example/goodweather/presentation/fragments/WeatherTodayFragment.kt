@@ -50,7 +50,7 @@ class WeatherTodayFragment() : Fragment() {
                 fragmentWeatherTodayBinding.tvLocation.text = "${data.name}, ${data.sys.country}"
 
                 fragmentWeatherTodayBinding.tvTemperature.text =
-                    data.main.temp.toInt().toString() + "\u2103"
+                    data.main.temp.toInt().toString() + " \u2103"
 
                 Glide.with(this)
                     .load("http://openweathermap.org/img/wn/"
@@ -58,12 +58,18 @@ class WeatherTodayFragment() : Fragment() {
                     .into(fragmentWeatherTodayBinding.ivWeather)
 
                 fragmentWeatherTodayBinding.tvDescription.text = data.weather.get(0).description
-                fragmentWeatherTodayBinding.tvFeelsLike.text = data.main.feelsLike.toInt().toString()
-                fragmentWeatherTodayBinding.tvTempMin.text = data.main.tempMin.toInt().toString()
-                fragmentWeatherTodayBinding.tvTempMax.text = data.main.tempMax.toInt().toString()
-                fragmentWeatherTodayBinding.tvPressure.text = data.main.pressure.toString()
-                fragmentWeatherTodayBinding.tvHumidity.text = data.main.humidity.toString()
-                fragmentWeatherTodayBinding.tvWindSpeed.text = data.wind.speed.toString()
+                fragmentWeatherTodayBinding.tvFeelsLike.text =
+                    data.main.feelsLike.toInt().toString() + " \u2103"
+                fragmentWeatherTodayBinding.tvTempMin.text =
+                    data.main.tempMin.toInt().toString() + " \u2103"
+                fragmentWeatherTodayBinding.tvTempMax.text =
+                    data.main.tempMax.toInt().toString() + " \u2103"
+                fragmentWeatherTodayBinding.tvPressure.text =
+                    data.main.pressure.toString() + " " + getString(R.string.mbar)
+                fragmentWeatherTodayBinding.tvHumidity.text =
+                    data.main.humidity.toString() + " " + getString(R.string.per)
+                fragmentWeatherTodayBinding.tvWindSpeed.text =
+                    data.wind.speed.toString() + " " + getString(R.string.km_in_hour)
             }
 
         })
