@@ -1,12 +1,8 @@
 package com.example.goodweather.presentation.lifedata
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Application
-import android.content.pm.PackageManager
 import android.location.Location
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import com.example.goodweather.location.LocationDetails
 import com.google.android.gms.location.LocationCallback
@@ -26,9 +22,11 @@ class LocationLiveData(application: Application) : LiveData<LocationDetails>() {
     @SuppressLint("MissingPermission")
     override fun onActive() {
         super.onActive()
-        fusedLocationClient.lastLocation.addOnSuccessListener { location: Location ->
-            location.also {
-                setLocationData(it)
+        fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
+            location?.let {
+                location.also {
+                    setLocationData(it)
+                }
             }
         }
         startLocationUpdates()
@@ -50,8 +48,12 @@ class LocationLiveData(application: Application) : LiveData<LocationDetails>() {
         }
     }
 
-    private fun setLocationData(location: Location) {
-        value = LocationDetails(location.latitude.toString(), location.longitude.toString())
+    fun setLocationData(location: Location?) {
+        value = if(location != null) {
+            LocationDetails(location.latitude.toString(), location.longitude.toString())
+        } else {
+            LocationDetails("55.751244", "37.618423") //TODO make update in the future
+        }
     }
 
     companion object {
