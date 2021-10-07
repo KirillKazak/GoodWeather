@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/weatherTodayFragment"
+        android:title="@string/btn_bottom_toolbar_today"
+        android:icon="@drawable/ic_weather_today"
+        android:iconTint="@color/black" />
+    <item android:id="@+id/weatherInLocationFragment"
+        android:title="@string/btn_bottom_toolbar_in_location"
+        android:icon="@drawable/ic_weather_in_location"
+        android:iconTint="@color/black"/>
+</menu>
